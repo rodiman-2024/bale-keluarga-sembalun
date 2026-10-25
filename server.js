@@ -619,11 +619,16 @@ app.use((req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Start Server
-app.listen(PORT, () => {
-  console.log(`===================================================`);
-  console.log(`🌄 BALE KELUARGA HOMESTAY SEMBALUN - SERVER RUNNING`);
-  console.log(`🌐 Website Frontend: http://localhost:${PORT}`);
-  console.log(`🔐 Admin Panel CMS: http://localhost:${PORT}/admin`);
-  console.log(`===================================================`);
-});
+// Export app for Vercel Serverless
+module.exports = app;
+
+// Start Server locally if not running in Vercel
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`===================================================`);
+    console.log(`🌄 BALE KELUARGA HOMESTAY SEMBALUN - SERVER RUNNING`);
+    console.log(`🌐 Website Frontend: http://localhost:${PORT}`);
+    console.log(`🔐 Admin Panel CMS: http://localhost:${PORT}/admin`);
+    console.log(`===================================================`);
+  });
+}
