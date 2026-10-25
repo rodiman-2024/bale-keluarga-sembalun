@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CMS Admin Panel | Bale Keluarga Homestay Sembalun</title>
+  <link rel="icon" href="/images/logo.jpg" type="image/jpeg">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Admin CSS -->
+  <link rel="stylesheet" href="/admin/css/admin.css">
+</head>
+<body>
+
+  <!-- ======================================================================
+       1. LOGIN SCREEN
+       ====================================================================== -->
+  <div class="login-screen" id="login-screen">
+    <div class="login-card">
+      <img src="/images/logo.jpg" alt="Logo Bale Keluarga" class="login-logo">
+      <h1 class="login-title">Panel CMS Admin</h1>
+      <p class="login-subtitle">Bale Keluarga Homestay Sembalun</p>
+
+      <div class="login-alert danger" id="login-error-alert"></div>
+
+      <form id="admin-login-form">
+        <div class="login-form-group">
+          <label class="login-label" for="admin-password">Password Admin</label>
+          <div class="login-input-wrap">
+            <input type="password" id="admin-password" class="login-input" placeholder="Masukkan password admin..." required autocomplete="current-password">
+            <button type="button" class="login-toggle-pw" id="btn-toggle-pw" aria-label="Lihat password">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-login" id="btn-login-submit">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i>
+          <span>Masuk ke Dashboard</span>
+        </button>
+      </form>
+
+      <div class="login-footer-hint">
+        <span>Password Default: <code>balekeluarga2026</code></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       2. MAIN ADMIN APP
+       ====================================================================== -->
+  <div class="admin-app" id="admin-app">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-header">
+        <img src="/images/logo.jpg" alt="Logo" class="sidebar-logo">
+        <div>
+          <div class="sidebar-brand-name">Bale Keluarga</div>
+          <span class="sidebar-badge">CMS Management</span>
+        </div>
+      </div>
+
+      <ul class="sidebar-nav">
+        <li>
+          <button class="nav-item-btn active" data-tab="tab-overview">
+            <i class="fa-solid fa-chart-pie"></i>
+            <span>Ringkasan</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="tab-settings">
+            <i class="fa-solid fa-sliders"></i>
+            <span>Identitas & Kontak</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="tab-visibility">
+            <i class="fa-solid fa-eye"></i>
+            <span>Visibilitas Section</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="tab-rooms">
+            <i class="fa-solid fa-bed"></i>
+            <span>Manajemen Kamar</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="tab-facilities">
+            <i class="fa-solid fa-spa"></i>
+            <span>Fasilitas Villa</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="tab-gallery">
+            <i class="fa-solid fa-images"></i>
+            <span>Galeri & Foto</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="tab-bookings">
+            <i class="fa-solid fa-calendar-check"></i>
+            <span>Reservasi Masuk</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="tab-testimonials">
+            <i class="fa-solid fa-star"></i>
+            <span>Ulasan Tamu</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="tab-seo">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span>SEO & Metadata</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="tab-integrations">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <span>Sheets & Cloudinary</span>
+          </button>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <button class="btn-sidebar-logout" id="btn-admin-logout">
+          <i class="fa-solid fa-power-off"></i>
+          <span>Keluar (Logout)</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="admin-main">
+      <!-- Topbar -->
+      <header class="admin-topbar">
+        <div class="topbar-left">
+          <h2 class="topbar-page-title" id="topbar-title">Ringkasan Dashboard</h2>
+          <div class="sync-status-indicator" id="sheets-indicator">
+            <i class="fa-solid fa-database"></i>
+            <span id="sheets-indicator-text">Penyimpanan: Database Lokal</span>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <button class="btn-admin btn-admin-primary" id="btn-save-all">
+            <i class="fa-solid fa-floppy-disk"></i> Simpan Semua Perubahan
+          </button>
+        </div>
+      </header>
+
+      <!-- Admin Tabs Container -->
+      <div class="admin-body">
+
+        <!-- ================================================================
+             TAB 1: OVERVIEW DASHBOARD
+             ================================================================ -->
+        <section class="tab-pane active" id="tab-overview">
+          <div class="form-grid-3" style="margin-bottom: 2rem;">
+            <div class="admin-card" style="border-left: 4px solid var(--admin-primary);">
+              <div class="card-subtitle" style="margin-bottom: 0.5rem;">Total Kamar Aktif</div>
+              <div style="font-size: 2.2rem; font-weight: 800; color: var(--admin-dark);" id="stat-rooms-count">0</div>
+              <div style="font-size: 0.85rem; color: var(--admin-muted); margin-top: 0.25rem;">Kamar & Villa Tersedia</div>
+            </div>
+
+            <div class="admin-card" style="border-left: 4px solid var(--admin-secondary);">
+              <div class="card-subtitle" style="margin-bottom: 0.5rem;">Reservasi Masuk</div>
+              <div style="font-size: 2.2rem; font-weight: 800; color: var(--admin-dark);" id="stat-bookings-count">0</div>
+              <div style="font-size: 0.85rem; color: var(--admin-muted); margin-top: 0.25rem;">Permintaan Reservasi Tamu</div>
+            </div>
+
+            <div class="admin-card" style="border-left: 4px solid #10B981;">
+              <div class="card-subtitle" style="margin-bottom: 0.5rem;">Total Foto Galeri</div>
+              <div style="font-size: 2.2rem; font-weight: 800; color: var(--admin-dark);" id="stat-gallery-count">0</div>
+              <div style="font-size: 0.85rem; color: var(--admin-muted); margin-top: 0.25rem;">Foto Dipublikasikan</div>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <!-- Quick Actions -->
+            <div class="admin-card">
+              <h3 class="card-title"><i class="fa-solid fa-bolt"></i> Aksi Cepat</h3>
+              <p class="card-subtitle">Pintasan tugas admin yang sering digunakan.</p>
+
+              <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                <button class="btn-admin btn-admin-outline" onclick="switchTab('tab-rooms')" style="justify-content: flex-start; padding: 0.85rem 1rem;">
+                  <i class="fa-solid fa-plus-circle" style="color: var(--admin-primary);"></i> Tambah Tipe Kamar Baru
+                </button>
+                <button class="btn-admin btn-admin-outline" onclick="switchTab('tab-gallery')" style="justify-content: flex-start; padding: 0.85rem 1rem;">
+                  <i class="fa-solid fa-cloud-arrow-up" style="color: var(--admin-secondary);"></i> Upload Foto ke Galeri
+                </button>
+                <button class="btn-admin btn-admin-outline" onclick="switchTab('tab-integrations')" style="justify-content: flex-start; padding: 0.85rem 1rem;">
+                  <i class="fa-solid fa-arrows-rotate" style="color: #10B981;"></i> Sinkronkan Google Sheets Sekarang
+                </button>
+              </div>
+            </div>
+
+            <!-- Status Database & Storage -->
+            <div class="admin-card">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
+                <h3 class="card-title" style="margin-bottom: 0;"><i class="fa-solid fa-shield-halved" style="color: #10B981;"></i> Status Database & Storage</h3>
+                <button type="button" class="btn-admin btn-admin-outline btn-sm" onclick="checkSystemHealth()">
+                  <i class="fa-solid fa-arrows-rotate"></i> Cek Status Sekarang
+                </button>
+              </div>
+              <p class="card-subtitle">Kondisi operasional database lokal, Google Sheets, dan penyimpanan foto.</p>
+
+              <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+                <!-- Local Database -->
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.8rem; background: #F8FAFC; border-radius: var(--radius-sm); border: 1px solid var(--admin-border);">
+                  <div>
+                    <strong style="display: block; font-size: 0.95rem;"><i class="fa-solid fa-database" style="color: var(--admin-primary); margin-right: 5px;"></i> Database Utama (Lokal)</strong>
+                    <span style="font-size: 0.82rem; color: #15803D;" id="status-db-local"><i class="fa-solid fa-circle-check"></i> AKTIF & NORMAL (data/content.json)</span>
+                  </div>
+                  <span class="badge-status confirmed">Aktif</span>
+                </div>
+
+                <!-- Google Sheets -->
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.8rem; background: #F8FAFC; border-radius: var(--radius-sm); border: 1px solid var(--admin-border);">
+                  <div>
+                    <strong style="display: block; font-size: 0.95rem;"><i class="fa-brands fa-google-drive" style="color: #0F9D58; margin-right: 5px;"></i> Google Sheets Database</strong>
+                    <span style="font-size: 0.82rem; color: var(--admin-muted);" id="status-db-sheets">Belum terhubung Web App URL</span>
+                  </div>
+                  <span class="badge-status new" id="badge-db-sheets">Siap Dihubungkan</span>
+                </div>
+
+                <!-- Internal Storage -->
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.8rem; background: #F8FAFC; border-radius: var(--radius-sm); border: 1px solid var(--admin-border);">
+                  <div>
+                    <strong style="display: block; font-size: 0.95rem;"><i class="fa-solid fa-hard-drive" style="color: var(--admin-secondary); margin-right: 5px;"></i> Penyimpanan Internal Storage</strong>
+                    <span style="font-size: 0.82rem; color: #15803D;" id="status-storage-local"><i class="fa-solid fa-circle-check"></i> AKTIF (Folder /public/images/)</span>
+                  </div>
+                  <span class="badge-status confirmed">Aktif</span>
+                </div>
+
+                <!-- Cloudinary CDN -->
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.8rem; background: #F8FAFC; border-radius: var(--radius-sm); border: 1px solid var(--admin-border);">
+                  <div>
+                    <strong style="display: block; font-size: 0.95rem;"><i class="fa-solid fa-cloud" style="color: #3448C5; margin-right: 5px;"></i> Cloudinary Image CDN</strong>
+                    <span style="font-size: 0.82rem; color: var(--admin-muted);" id="status-storage-cloud">Penyimpanan internal storage aktif</span>
+                  </div>
+                  <span class="badge-status new" id="badge-storage-cloud">Opsional</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             TAB 2: SITE SETTINGS (IDENTITAS & KONTAK)
+             ================================================================ -->
+        <section class="tab-pane" id="tab-settings">
+          <div class="admin-card">
+            <h3 class="card-title"><i class="fa-solid fa-hotel"></i> Profil Villa & Branding</h3>
+            <p class="card-subtitle">Informasi utama villa yang tampil di navbar, hero, dan footer.</p>
+
+            <div class="form-grid-2">
+              <div class="admin-form-group">
+                <label class="admin-label">Nama Villa / Homestay</label>
+                <input type="text" id="setting-villa-name" class="admin-input">
+              </div>
+
+              <div class="admin-form-group">
+                <label class="admin-label">Tagline Singkat</label>
+                <input type="text" id="setting-tagline" class="admin-input">
+              </div>
+            </div>
+
+            <div class="admin-form-group">
+              <label class="admin-label">Deskripsi Utama (Subheadline Hero)</label>
+              <textarea id="setting-subheadline" class="admin-textarea"></textarea>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="admin-form-group">
+                <label class="admin-label">Badge Promo Hero</label>
+                <input type="text" id="setting-hero-badge" class="admin-input" placeholder="Contoh: ⭐️ Pilihan #1 Liburan Keluarga di Sembalun">
+              </div>
+
+              <div class="admin-form-group">
+                <label class="admin-label">Hero Background Image</label>
+                <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.4rem;">
+                  <input type="file" id="hero-file-picker" style="display: none;" accept="image/*">
+                  <button type="button" class="btn-admin btn-admin-outline" onclick="document.getElementById('hero-file-picker').click()">
+                    <i class="fa-solid fa-folder-open" style="color: var(--admin-primary);"></i> Unggah Banner dari Komputer
+                  </button>
+                </div>
+                <input type="text" id="setting-hero-image" class="admin-input">
+                <div id="hero-preview-box" style="margin-top: 0.5rem;">
+                  <img src="/images/hero-villa.jpg" id="hero-preview-img" style="height: 60px; width: 120px; object-fit: cover; border: 1px solid var(--admin-border); border-radius: var(--radius-sm);">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="admin-form-group">
+                <label class="admin-label">Logo Image</label>
+                <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.4rem;">
+                  <input type="file" id="logo-file-picker" style="display: none;" accept="image/*">
+                  <button type="button" class="btn-admin btn-admin-outline" onclick="document.getElementById('logo-file-picker').click()">
+                    <i class="fa-solid fa-folder-open" style="color: var(--admin-primary);"></i> Unggah Logo dari Komputer
+                  </button>
+                </div>
+                <input type="text" id="setting-logo-url" class="admin-input">
+                <div id="logo-preview-box" style="margin-top: 0.5rem;">
+                  <img src="/images/logo.jpg" id="logo-preview-img" style="height: 48px; border: 1px solid var(--admin-border); border-radius: var(--radius-sm); padding: 2px; background: white;">
+                </div>
+              </div>
+
+              <div class="admin-form-group">
+                <label class="admin-label">Warna Identitas Utama (Logo Palette)</label>
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                  <input type="color" id="setting-primary-color" style="width: 50px; height: 42px; border-radius: var(--radius-sm); border: 1px solid var(--admin-border); cursor: pointer;">
+                  <span id="setting-primary-color-text" style="font-weight: 600; font-family: monospace;">#9B328E</span>
+                  
+                  <input type="color" id="setting-secondary-color" style="width: 50px; height: 42px; border-radius: var(--radius-sm); border: 1px solid var(--admin-border); cursor: pointer; margin-left: 1rem;">
+                  <span id="setting-secondary-color-text" style="font-weight: 600; font-family: monospace;">#F59E0B</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="admin-card">
+            <h3 class="card-title"><i class="fa-solid fa-address-book"></i> Kontak, Alamat & Booking</h3>
+            <p class="card-subtitle">Nomor WhatsApp dan kontak untuk reservasi otomatis.</p>
+
+            <div class="form-grid-3">
+              <div class="admin-form-group">
+                <label class="admin-label">Nomor WhatsApp (dengan kode negara)</label>
+                <input type="text" id="setting-whatsapp" class="admin-input" placeholder="6281234567890">
+              </div>
+
+              <div class="admin-form-group">
+                <label class="admin-label">Nomor Telepon Tampil</label>
+                <input type="text" id="setting-phone" class="admin-input" placeholder="+62 812-3456-7890">
+              </div>
+
+              <div class="admin-form-group">
+                <label class="admin-label">Email Villa</label>
+                <input type="email" id="setting-email" class="admin-input">
+              </div>
+            </div>
+
+            <div class="admin-form-group">
+              <label class="admin-label">Alamat Lengkap</label>
+              <textarea id="setting-address" class="admin-textarea" style="min-height: 70px;"></textarea>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="admin-form-group">
+                <label class="admin-label">Jam Check-in</label>
+                <input type="text" id="setting-checkin" class="admin-input" placeholder="14:00 WITA">
+              </div>
+
+              <div class="admin-form-group">
+                <label class="admin-label">Jam Check-out</label>
+                <input type="text" id="setting-checkout" class="admin-input" placeholder="12:00 WITA">
+              </div>
+            </div>
+
+            <div class="admin-form-group">
+              <label class="admin-label">Google Maps Embed URL (Iframe Src)</label>
+              <input type="text" id="setting-map-url" class="admin-input">
+            </div>
+
+            <div class="form-grid-3">
+              <div class="admin-form-group">
+                <label class="admin-label">Instagram Link</label>
+                <input type="text" id="setting-instagram" class="admin-input">
+              </div>
+              <div class="admin-form-group">
+                <label class="admin-label">Facebook Link</label>
+                <input type="text" id="setting-facebook" class="admin-input">
+              </div>
+              <div class="admin-form-group">
+                <label class="admin-label">TikTok Link</label>
+                <input type="text" id="setting-tiktok" class="admin-input">
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             TAB 3: SECTION VISIBILITY
+             ================================================================ -->
+        <section class="tab-pane" id="tab-visibility">
+          <div class="admin-card">
+            <h3 class="card-title"><i class="fa-solid fa-eye"></i> Tampilkan atau Sembunyikan Section Frontend</h3>
+            <p class="card-subtitle">Gunakan saklar toggle di bawah ini untuk mengatur section apa saja yang tampil di halaman utama website.</p>
+
+            <div class="switch-group">
+              <div>
+                <div class="switch-label-title">Hero Banner Utama</div>
+                <div class="switch-label-desc">Gambar besar, judul utama, badge, dan tombol reservasi di bagian paling atas.</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="vis-hero" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="switch-group">
+              <div>
+                <div class="switch-label-title">Quick Booking Bar</div>
+                <div class="switch-label-desc">Formulir pemilihan tanggal cepat di bawah banner hero.</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="vis-quickBooking" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="switch-group">
+              <div>
+                <div class="switch-label-title">Profil & Cerita Villa (About)</div>
+                <div class="switch-label-desc">Deskripsi filosofi Bale Keluarga, ketinggian 1.156 mdpl, dan keunggulan.</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="vis-about" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="switch-group">
+              <div>
+                <div class="switch-label-title">Daftar Kamar & Villa (Rooms)</div>
+                <div class="switch-label-desc">Katalog tipe kamar, harga, fasilitas per kamar, dan tombol booking WA.</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="vis-rooms" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="switch-group">
+              <div>
+                <div class="switch-label-title">Fasilitas Lengkap (Facilities)</div>
+                <div class="switch-label-desc">Grid fasilitas (Water heater, Wi-Fi, kebun strawberry, api unggun, sarapan).</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="vis-facilities" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="switch-group">
+              <div>
+                <div class="switch-label-title">Aktivitas & Wisata Sembalun</div>
+                <div class="switch-label-desc">Daya tarik wisata terdekat (Pergasingan, kebun strawberry, stargazing).</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="vis-experience" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="switch-group">
+              <div>
+                <div class="switch-label-title">Galeri Foto (Gallery)</div>
+                <div class="switch-label-desc">Foto-foto penginapan dengan filter kategori dan lightbox.</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="vis-gallery" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="switch-group">
+              <div>
+                <div class="switch-label-title">Ulasan Tamu (Testimonials)</div>
+                <div class="switch-label-desc">Kutipan ulasan pengalaman tamu yang telah menginap.</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="vis-testimonials" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="switch-group">
+              <div>
+                <div class="switch-label-title">Lokasi & Petunjuk Peta (Location)</div>
+                <div class="switch-label-desc">Peta interaktif Google Maps dan rute dari bandara/kota.</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="vis-location" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="switch-group">
+              <div>
+                <div class="switch-label-title">Formulir Reservasi & Kontak Langsung</div>
+                <div class="switch-label-desc">Formulir booking kamar dan banner chat WhatsApp langsung.</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="vis-contact" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ================================================================
+             TAB 4: ROOMS MANAGEMENT
+             ================================================================ -->
+        <section class="tab-pane" id="tab-rooms">
+          <div class="admin-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+              <div>
+                <h3 class="card-title"><i class="fa-solid fa-bed"></i> Daftar Tipe Kamar & Villa</h3>
+                <p class="card-subtitle" style="margin-bottom: 0;">Kelola nama, harga, kapasitas, dan foto kamar.</p>
+              </div>
+              <button class="btn-admin btn-admin-primary" onclick="openRoomEditor()">
+                <i class="fa-solid fa-plus"></i> Tambah Kamar Baru
+              </button>
+            </div>
+
+            <div class="admin-table-wrap">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Foto</th>
+                    <th>Nama Kamar</th>
+                    <th>Harga / Malam</th>
+                    <th>Kapasitas</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="rooms-table-body">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             TAB 5: FACILITIES MANAGEMENT
+             ================================================================ -->
+        <section class="tab-pane" id="tab-facilities">
+          <div class="admin-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+              <div>
+                <h3 class="card-title"><i class="fa-solid fa-spa"></i> Fasilitas Villa</h3>
+                <p class="card-subtitle" style="margin-bottom: 0;">Fasilitas utama yang disediakan Bale Keluarga Homestay.</p>
+              </div>
+              <button class="btn-admin btn-admin-primary" onclick="openFacilityEditor()">
+                <i class="fa-solid fa-plus"></i> Tambah Fasilitas Baru
+              </button>
+            </div>
+
+            <div class="admin-table-wrap">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Ikon</th>
+                    <th>Nama Fasilitas</th>
+                    <th>Kategori</th>
+                    <th>Deskripsi</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="facilities-table-body">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             TAB 6: GALLERY & PHOTO STORAGE
+             ================================================================ -->
+        <section class="tab-pane" id="tab-gallery">
+          <div class="admin-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+              <div>
+                <h3 class="card-title"><i class="fa-solid fa-images"></i> Galeri Foto</h3>
+                <p class="card-subtitle" style="margin-bottom: 0;">Upload dan atur foto frontend yang tersimpan di Cloudinary / server.</p>
+              </div>
+              <button class="btn-admin btn-admin-primary" onclick="openGalleryUploader()">
+                <i class="fa-solid fa-cloud-arrow-up"></i> Upload Foto Baru
+              </button>
+            </div>
+
+            <div class="admin-table-wrap">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Thumbnail</th>
+                    <th>Judul Foto</th>
+                    <th>Kategori</th>
+                    <th>URL Gambar</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="gallery-table-body">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             TAB 7: BOOKINGS INQUIRIES
+             ================================================================ -->
+        <section class="tab-pane" id="tab-bookings">
+          <div class="admin-card">
+            <h3 class="card-title"><i class="fa-solid fa-calendar-check"></i> Pesanan Reservasi Masuk</h3>
+            <p class="card-subtitle">Daftar calon tamu yang mengirim formulir reservasi melalui frontend.</p>
+
+            <div class="admin-table-wrap">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Kode</th>
+                    <th>Nama Tamu</th>
+                    <th>Kamar</th>
+                    <th>Tanggal Menginap</th>
+                    <th>WhatsApp</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="bookings-table-body">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             TAB 8: TESTIMONIALS
+             ================================================================ -->
+        <section class="tab-pane" id="tab-testimonials">
+          <div class="admin-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+              <div>
+                <h3 class="card-title"><i class="fa-solid fa-star"></i> Ulasan Pengalaman Tamu</h3>
+                <p class="card-subtitle" style="margin-bottom: 0;">Testimoni yang ditampilkan untuk meningkatkan kepercayaan calon tamu.</p>
+              </div>
+              <button class="btn-admin btn-admin-primary" onclick="openTestimonialEditor()">
+                <i class="fa-solid fa-plus"></i> Tambah Ulasan Baru
+              </button>
+            </div>
+
+            <div class="admin-table-wrap">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Tamu</th>
+                    <th>Kota / Asal</th>
+                    <th>Rating</th>
+                    <th>Isi Ulasan</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="testimonials-table-body">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             TAB 9: SEO & METADATA
+             ================================================================ -->
+        <section class="tab-pane" id="tab-seo">
+          <div class="admin-card">
+            <h3 class="card-title"><i class="fa-solid fa-magnifying-glass"></i> Pengaturan SEO & Mesin Pencari Google</h3>
+            <p class="card-subtitle">Optimalkan peringkat website Bale Keluarga Homestay di Google Search dan media sosial.</p>
+
+            <div class="admin-form-group">
+              <label class="admin-label">Meta Title (Judul Tab Browser & Hasil Google)</label>
+              <input type="text" id="seo-title" class="admin-input" placeholder="Bale Keluarga Homestay Sembalun | Villa Mewah di Kaki Gunung Rinjani">
+            </div>
+
+            <div class="admin-form-group">
+              <label class="admin-label">Meta Description (Deskripsi Cuplikan Google)</label>
+              <textarea id="seo-description" class="admin-textarea" placeholder="Deskripsi menarik sepanjang 150-160 karakter..."></textarea>
+            </div>
+
+            <div class="admin-form-group">
+              <label class="admin-label">Keywords (Kata Kunci)</label>
+              <input type="text" id="seo-keywords" class="admin-input" placeholder="homestay sembalun, villa sembalun lombok, bale keluarga, penginapan rinjani">
+            </div>
+
+            <div class="admin-form-group">
+              <label class="admin-label">OpenGraph Social Share Image Banner (URL)</label>
+              <input type="text" id="seo-ogimage" class="admin-input">
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             TAB 10: INTEGRATIONS (GOOGLE SHEETS & CLOUDINARY)
+             ================================================================ -->
+        <section class="tab-pane" id="tab-integrations">
+          <!-- Google Sheets Database -->
+          <div class="admin-card">
+            <h3 class="card-title"><i class="fa-brands fa-google-drive" style="color: #0F9D58;"></i> Integrasi Database: Google Sheets</h3>
+            <p class="card-subtitle">Simpan seluruh konten frontend, profil kamar, dan reservasi di Google Spreadsheet Anda tanpa biaya database bulanan.</p>
+
+            <div class="admin-form-group">
+              <label class="admin-label">Google Apps Script Web App URL (akhiran <code>/exec</code>)</label>
+              <input type="text" id="int-sheets-url" class="admin-input" placeholder="https://script.google.com/macros/s/AKfycb.../exec">
+            </div>
+
+            <div style="display: flex; gap: 0.85rem; flex-wrap: wrap; margin-top: 1.25rem;">
+              <button class="btn-admin btn-admin-outline" id="btn-test-sheets">
+                <i class="fa-solid fa-plug"></i> Tes Koneksi Spreadsheet
+              </button>
+              <button class="btn-admin btn-admin-primary" id="btn-push-sheets">
+                <i class="fa-solid fa-cloud-arrow-up"></i> Kirim Semua Data ke Sheets (PUSH)
+              </button>
+              <button class="btn-admin btn-admin-outline" id="btn-pull-sheets">
+                <i class="fa-solid fa-cloud-arrow-down"></i> Tarik Data dari Sheets (PULL)
+              </button>
+            </div>
+
+            <div style="margin-top: 1.75rem; background: #F8FAFC; border-radius: var(--radius-sm); border: 1px solid var(--admin-border); padding: 1.25rem;">
+              <strong style="color: var(--admin-dark); font-size: 0.95rem; display: block; margin-bottom: 0.5rem;">
+                <i class="fa-solid fa-circle-info" style="color: var(--admin-primary);"></i> Panduan Pasang Script Google Apps Script:
+              </strong>
+              <p style="font-size: 0.88rem; color: var(--admin-muted); line-height: 1.6; margin-bottom: 0.75rem;">
+                Kode script lengkap telah disediakan di file <code>google-apps-script/Code.gs</code>. Buka spreadsheet baru di Google Drive, klik <strong>Extensions > Apps Script</strong>, tempelkan kode tersebut, jalankan fungsi <code>setupDatabase</code>, lalu deploy sebagai Web App dengan izin akses <em>"Anyone"</em>.
+              </p>
+              <button class="btn-admin btn-admin-outline btn-sm" onclick="copyScriptCode()">
+                <i class="fa-solid fa-copy"></i> Salin Petunjuk Setup ke Clipboard
+              </button>
+            </div>
+          </div>
+
+          <!-- Cloudinary Image Storage -->
+          <div class="admin-card">
+            <h3 class="card-title"><i class="fa-solid fa-cloud" style="color: #3448C5;"></i> Integrasi Gambar: Cloudinary</h3>
+            <p class="card-subtitle">Kelola foto villa dan kamar di CDN Cloudinary dengan optimasi ukuran dan format otomatis.</p>
+
+            <div class="form-grid-2">
+              <div class="admin-form-group">
+                <label class="admin-label">Cloud Name</label>
+                <input type="text" id="int-cloud-name" class="admin-input" placeholder="Contoh: my-cloud-sembalun">
+              </div>
+
+              <div class="admin-form-group">
+                <label class="admin-label">Upload Preset (Unsigned / Client)</label>
+                <input type="text" id="int-cloud-preset" class="admin-input" placeholder="Contoh: bale_keluarga_preset">
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="admin-form-group">
+                <label class="admin-label">API Key (Opsional untuk server upload)</label>
+                <input type="text" id="int-cloud-key" class="admin-input">
+              </div>
+
+              <div class="admin-form-group">
+                <label class="admin-label">API Secret (Tersimpan aman di backend)</label>
+                <input type="password" id="int-cloud-secret" class="admin-input">
+              </div>
+            </div>
+
+            <div style="font-size: 0.85rem; color: var(--admin-muted); margin-top: 0.5rem;">
+              <i class="fa-solid fa-shield-halved" style="color: #10B981;"></i> Jika Cloudinary belum diisi, sistem tetap berfungsi 100% menggunakan folder penyimpanan lokal <code>public/images/</code>.
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- ======================================================================
+       3. MODALS (EDITOR & UPLOADERS)
+       ====================================================================== -->
+  <!-- Hidden File Input for universal uploader -->
+  <input type="file" id="universal-file-input" style="display: none;" accept="image/*">
+
+  <!-- Room Editor Modal -->
+  <div class="modal-backdrop" id="room-editor-modal">
+    <div class="modal-container" style="max-width: 680px; padding: 2rem;">
+      <button class="modal-close-btn" onclick="closeAdminModals()">&times;</button>
+      <h3 style="margin-bottom: 1.5rem; font-family: var(--font-serif); font-size: 1.5rem;" id="room-modal-title">Edit Tipe Kamar</h3>
+
+      <form id="room-form">
+        <input type="hidden" id="edit-room-id">
+
+        <div class="form-grid-2">
+          <div class="admin-form-group">
+            <label class="admin-label">Nama Kamar</label>
+            <input type="text" id="room-edit-name" class="admin-input" required>
+          </div>
+          <div class="admin-form-group">
+            <label class="admin-label">Harga (IDR per malam)</label>
+            <input type="number" id="room-edit-price" class="admin-input" required>
+          </div>
+        </div>
+
+        <div class="form-grid-3">
+          <div class="admin-form-group">
+            <label class="admin-label">Kapasitas</label>
+            <input type="text" id="room-edit-capacity" class="admin-input" placeholder="4 - 6 Orang">
+          </div>
+          <div class="admin-form-group">
+            <label class="admin-label">Tipe Ranjang</label>
+            <input type="text" id="room-edit-bed" class="admin-input" placeholder="2 King Bed">
+          </div>
+          <div class="admin-form-group">
+            <label class="admin-label">Ukuran Kamar</label>
+            <input type="text" id="room-edit-size" class="admin-input" placeholder="56 m²">
+          </div>
+        </div>
+
+        <div class="admin-form-group">
+          <label class="admin-label">Badge Promo (Opsional)</label>
+          <input type="text" id="room-edit-badge" class="admin-input" placeholder="Contoh: Pilihan Terfavorit / Best Mountain View">
+        </div>
+
+        <div class="admin-form-group">
+          <label class="admin-label">Foto Utama Kamar</label>
+          <div style="display: flex; gap: 0.75rem; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap;">
+            <input type="file" id="room-file-picker" accept="image/*" style="display: none;">
+            <button type="button" class="btn-admin btn-admin-outline" onclick="document.getElementById('room-file-picker').click()">
+              <i class="fa-solid fa-folder-open" style="color: var(--admin-primary);"></i> Unggah dari Komputer (Internal Storage)
+            </button>
+            <span style="font-size: 0.8rem; color: var(--admin-muted);">atau ketik URL gambar langsung</span>
+          </div>
+          <input type="text" id="room-edit-image" class="admin-input" placeholder="/images/room-xxx.jpg atau https://..." required>
+          
+          <div id="room-upload-preview-box" class="upload-preview-card" style="display: none;">
+            <img src="" id="room-upload-preview-img" alt="Preview Foto Kamar">
+            <div class="upload-info">
+              <div class="upload-name" id="room-upload-filename">Foto Terpilih</div>
+              <div class="upload-status" id="room-upload-status"><i class="fa-solid fa-circle-check"></i> Foto tersimpan & siap ditampilkan</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-form-group">
+          <label class="admin-label">Deskripsi Kamar</label>
+          <textarea id="room-edit-desc" class="admin-textarea"></textarea>
+        </div>
+
+        <div class="admin-form-group">
+          <label class="admin-label">Fasilitas Kamar (Pisahkan dengan koma)</label>
+          <input type="text" id="room-edit-amenities" class="admin-input" placeholder="Water Heater, Balkon Rinjani, Wi-Fi Cepat, Smart TV...">
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.85rem; margin-top: 2rem;">
+          <button type="button" class="btn-admin btn-admin-outline" onclick="closeAdminModals()">Batal</button>
+          <button type="submit" class="btn-admin btn-admin-primary">Simpan Kamar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Facility Editor Modal -->
+  <div class="modal-backdrop" id="facility-editor-modal">
+    <div class="modal-container" style="max-width: 540px; padding: 2rem;">
+      <button class="modal-close-btn" onclick="closeAdminModals()">&times;</button>
+      <h3 style="margin-bottom: 1.5rem; font-family: var(--font-serif); font-size: 1.5rem;" id="fac-modal-title">Edit Fasilitas</h3>
+
+      <form id="facility-form">
+        <input type="hidden" id="edit-fac-id">
+
+        <div class="admin-form-group">
+          <label class="admin-label">Nama Fasilitas</label>
+          <input type="text" id="fac-edit-name" class="admin-input" required>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="admin-form-group">
+            <label class="admin-label">Pilih Ikon Cepat</label>
+            <select class="admin-select" onchange="document.getElementById('fac-edit-icon').value = this.value">
+              <option value="">-- Pilih Icon --</option>
+              <option value="fa-shower">🚿 Water Heater (fa-shower)</option>
+              <option value="fa-wifi">📶 Wi-Fi Cepat (fa-wifi)</option>
+              <option value="fa-seedling">🍓 Kebun Strawberry (fa-seedling)</option>
+              <option value="fa-fire">🔥 Api Unggun / BBQ (fa-fire)</option>
+              <option value="fa-mug-hot">☕ Sarapan & Kopi (fa-mug-hot)</option>
+              <option value="fa-square-parking">🅿️ Parkir Luas (fa-square-parking)</option>
+              <option value="fa-mountain">⛰️ Trekking Rinjani (fa-mountain)</option>
+              <option value="fa-kitchen-set">🍳 Dapur Bersama (fa-kitchen-set)</option>
+              <option value="fa-tv">📺 Smart TV (fa-tv)</option>
+              <option value="fa-bed">🛏️ Kasur Nyaman (fa-bed)</option>
+            </select>
+          </div>
+          <div class="admin-form-group">
+            <label class="admin-label">FontAwesome Class</label>
+            <input type="text" id="fac-edit-icon" class="admin-input" placeholder="fa-shower" required>
+          </div>
+        </div>
+
+        <div class="admin-form-group">
+          <label class="admin-label">Kategori</label>
+          <input type="text" id="fac-edit-category" class="admin-input" placeholder="Kenyamanan / Rekreasi / Kuliner">
+        </div>
+
+        <div class="admin-form-group">
+          <label class="admin-label">Deskripsi Singkat</label>
+          <textarea id="fac-edit-desc" class="admin-textarea"></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.85rem; margin-top: 1.5rem;">
+          <button type="button" class="btn-admin btn-admin-outline" onclick="closeAdminModals()">Batal</button>
+          <button type="submit" class="btn-admin btn-admin-primary">Simpan Fasilitas</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Gallery Uploader Modal -->
+  <div class="modal-backdrop" id="gallery-uploader-modal">
+    <div class="modal-container" style="max-width: 580px; padding: 2rem;">
+      <button class="modal-close-btn" onclick="closeAdminModals()">&times;</button>
+      <h3 style="margin-bottom: 1.5rem; font-family: var(--font-serif); font-size: 1.5rem;">Upload Foto ke Galeri</h3>
+
+      <form id="gallery-form">
+        <div class="upload-dropzone" onclick="document.getElementById('gallery-file-picker').click()">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          <h4>Klik atau Seret Foto ke Sini</h4>
+          <p style="font-size: 0.85rem; color: var(--admin-muted); margin-top: 0.25rem;">Format didukung: JPG, PNG, WebP (Maks 10MB)</p>
+          <input type="file" id="gallery-file-picker" style="display: none;" accept="image/*">
+        </div>
+
+        <div id="gallery-upload-preview" style="display: none; margin-top: 1.25rem; text-align: center;">
+          <img src="" id="gallery-preview-img" style="max-height: 200px; border-radius: var(--radius-sm); margin: 0 auto;">
+        </div>
+
+        <div class="admin-form-group" style="margin-top: 1.5rem;">
+          <label class="admin-label">Judul Foto</label>
+          <input type="text" id="gal-edit-title" class="admin-input" placeholder="Contoh: Pemandangan Matahari Terbit dari Teras" required>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="admin-form-group">
+            <label class="admin-label">Kategori Foto</label>
+            <select id="gal-edit-category" class="admin-select">
+              <option value="kamar">Kamar & Suite</option>
+              <option value="pemandangan" selected>Pemandangan & Alam</option>
+              <option value="suasana">Suasana Malam</option>
+              <option value="fasilitas">Fasilitas & Kuliner</option>
+            </select>
+          </div>
+
+          <div class="admin-form-group">
+            <label class="admin-label">Alt Text (SEO)</label>
+            <input type="text" id="gal-edit-alt" class="admin-input" placeholder="Deskripsi untuk Google Gambar">
+          </div>
+        </div>
+
+        <div class="admin-form-group">
+          <label class="admin-label">Atau Masukkan URL Gambar Langsung</label>
+          <input type="text" id="gal-edit-url" class="admin-input" placeholder="https://res.cloudinary.com/... atau /images/...">
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.85rem; margin-top: 1.5rem;">
+          <button type="button" class="btn-admin btn-admin-outline" onclick="closeAdminModals()">Batal</button>
+          <button type="submit" class="btn-admin btn-admin-primary" id="btn-save-gallery">Simpan ke Galeri</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Testimonial Editor Modal -->
+  <div class="modal-backdrop" id="testimonial-editor-modal">
+    <div class="modal-container" style="max-width: 540px; padding: 2rem;">
+      <button class="modal-close-btn" onclick="closeAdminModals()">&times;</button>
+      <h3 style="margin-bottom: 1.5rem; font-family: var(--font-serif); font-size: 1.5rem;" id="testi-modal-title">Edit Ulasan Tamu</h3>
+
+      <form id="testimonial-form">
+        <input type="hidden" id="edit-testi-id">
+
+        <div class="admin-form-group">
+          <label class="admin-label">Nama Tamu</label>
+          <input type="text" id="testi-edit-name" class="admin-input" required>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="admin-form-group">
+            <label class="admin-label">Kota / Asal Tamu</label>
+            <input type="text" id="testi-edit-origin" class="admin-input" placeholder="Jakarta / Surabaya / Australia">
+          </div>
+          <div class="admin-form-group">
+            <label class="admin-label">Rating (1 - 5 Bintang)</label>
+            <select id="testi-edit-rating" class="admin-select">
+              <option value="5" selected>⭐️⭐️⭐️⭐️⭐️ (5 Bintang)</option>
+              <option value="4">⭐️⭐️⭐️⭐️ (4 Bintang)</option>
+              <option value="3">⭐️⭐️⭐️ (3 Bintang)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="admin-form-group">
+          <label class="admin-label">Isi Ulasan</label>
+          <textarea id="testi-edit-review" class="admin-textarea" required></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.85rem; margin-top: 1.5rem;">
+          <button type="button" class="btn-admin btn-admin-outline" onclick="closeAdminModals()">Batal</button>
+          <button type="submit" class="btn-admin btn-admin-primary">Simpan Ulasan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- Notification Toast -->
+  <div class="admin-toast" id="admin-toast">
+    <i class="fa-solid fa-circle-check" id="toast-icon"></i>
+    <span id="toast-message">Perubahan tersimpan.</span>
+  </div>
+
+  <!-- Admin JS Logic -->
+  <script src="/admin/js/admin.js"></script>
+</body>
+</html>

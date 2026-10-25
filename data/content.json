@@ -1,0 +1,472 @@
+{
+  "siteSettings": {
+    "villaName": "Bale Keluarga Homestay Sembalun",
+    "tagline": "Luxury Mountain Retreat & Authentic Family Warmth",
+    "subheadline": "Nikmati ketenangan 1.156 mdpl di kaki Gunung Rinjani dengan pemandangan spektakuler, udara sejuk pegunungan, kebun strawberry alami, dan kenyamanan villa berstandar premium.",
+    "logoUrl": "/images/logo.jpg",
+    "faviconUrl": "/images/logo.jpg",
+    "heroImage": "/images/hero-villa.jpg",
+    "heroBadge": "⭐️ Pilihan #1 Liburan Keluarga di Sembalun",
+    "primaryColor": "#9b328e",
+    "secondaryColor": "#f59e0b",
+    "darkColor": "#1E293B",
+    "phone": "+62 85801112024",
+    "whatsapp": "6285801112024",
+    "whatsappMessage": "Halo Bale Keluarga Homestay Sembalun, saya ingin reservasi kamar untuk tanggal: ",
+    "email": "balekeluarga.sembalun@gmail.com",
+    "address": "Jl. Pariwisata Sembalun, Desa Sembalun Bumbung, Kec. Sembalun, Lombok Timur, NTB 83656",
+    "checkInTime": "14:00 WITA",
+    "checkOutTime": "12:00 WITA",
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3946.0614838637775!2d116.52763327572778!3d-8.493393285942475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcc4999f8c148bb%3A0xe54b4df9d1cf26c9!2sSembalun%2C%20East%20Lombok%20Regency%2C%20West%20Nusa%20Tenggara!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid",
+    "instagram": "https://instagram.com/balekeluarga.sembalun",
+    "facebook": "https://facebook.com/balekeluargasembalun",
+    "tiktok": "https://tiktok.com/@balekeluarga.sembalun",
+    "youtube": "https://youtube.com",
+    "ratingScore": "4.9",
+    "ratingCount": "240+ Ulasan Puas",
+    "elevation": "1.156 mdpl",
+    "temperature": "14°C - 22°C"
+  },
+  "sectionsVisibility": {
+    "hero": true,
+    "quickBooking": true,
+    "about": true,
+    "rooms": true,
+    "facilities": true,
+    "experience": true,
+    "gallery": true,
+    "testimonials": true,
+    "location": true,
+    "contact": true
+  },
+  "pages": [
+    {
+      "id": "home",
+      "title": "Beranda",
+      "heading": "Menyatu Dengan Alam, Menghangatkan Kebersamaan Keluarga",
+      "subheading": "Sebuah sanctuary eksklusif di lembah Sembalun dengan latar kemegahan Gunung Rinjani.",
+      "ctaText": "Reservasi Sekarang",
+      "ctaLink": "#booking"
+    },
+    {
+      "id": "about",
+      "title": "Tentang Kami",
+      "badge": "Tentang Bale Keluarga",
+      "heading": "Kehangatan Rumah Keluarga di Tengah Keagungan Rinjani",
+      "description": "Terinspirasi dari kata 'Bale' yang bermakna 'Rumah' dalam bahasa Sasak Lombok, Bale Keluarga Homestay dirancang sebagai ruang berkumpul yang hangat dan penuh kenyamanan bagi setiap keluarga dan sahabat yang berkunjung ke Sembalun.\n\nBerada di ketinggian 1.156 meter di atas permukaan laut dengan hembusan angin sejuk khas pegunungan, kami menyuguhkan perpaduan arsitektur kayu modern yang elegan dengan keramahan asli masyarakat Sasak. Di sini, Anda dapat membuka jendela kamar dan langsung disapa panorama puncak Rinjani berkabut emas saat mentari terbit.",
+      "featureList": [
+        "Panorama Langsung Menghadap Gunung Rinjani & Bukit Pergasingan",
+        "Kebun Strawberry Organik Sendiri (Petik Langsung Gratis)",
+        "Area Api Unggun & BBQ Outdoor untuk Malam Berbintang",
+        "Kamar Luas Berkonsep Keluarga dengan Water Heater 24 Jam",
+        "Akses Mudah & Parkiran Luas Bersebelahan dengan Jalan Utama"
+      ],
+      "stats": [
+        {
+          "value": "1.156 m",
+          "label": "Ketinggian Pegunungan"
+        },
+        {
+          "value": "4.9 / 5",
+          "label": "Rating Kepuasan Tamu"
+        },
+        {
+          "value": "100%",
+          "label": "Udara Segar Alami"
+        },
+        {
+          "value": "15+",
+          "label": "Spot Wisata Terdekat"
+        }
+      ]
+    }
+  ],
+  "rooms": [
+    {
+      "id": "room-1",
+      "name": "Grand Rinjani Family Suite",
+      "slug": "grand-rinjani-family-suite",
+      "price": 850000,
+      "priceFormatted": "Rp 850.000",
+      "period": "/ malam",
+      "badge": "Pilihan Terfavorit",
+      "capacity": "4 - 6 Orang",
+      "bedType": "2 King Size Bed + Daybed",
+      "size": "56 m²",
+      "view": "Direct Mount Rinjani & Valley View",
+      "image": "/images/room-family-suite.jpg",
+      "gallery": [
+        "/images/room-family-suite.jpg",
+        "/images/breakfast-view.jpg",
+        "/images/hero-villa.jpg"
+      ],
+      "description": "Suite keluarga termewah dengan dinding kaca lebar panorama Gunung Rinjani langsung dari tempat tidur. Dilengkapi perapian estetik, balkon pribadi menghadap lembah, dan kamar mandi luas dengan pemanas air bertekanan tinggi.",
+      "amenities": [
+        "Private Balcony with Rinjani View",
+        "Water Heater 24 Jam",
+        "High-Speed Wi-Fi",
+        "Smart TV with Netflix",
+        "Perapian Estetik & Heater",
+        "Free Sarapan Keluarga 4 Pax",
+        "Free Petik Strawberry",
+        "Coffee & Tea Maker",
+        "Amenities Lengkap & Hair Dryer"
+      ],
+      "featured": true,
+      "active": true,
+      "order": 1
+    },
+    {
+      "id": "room-2",
+      "name": "Pergasingan Sunrise Deluxe Villa",
+      "slug": "pergasingan-sunrise-deluxe-villa",
+      "price": 650000,
+      "priceFormatted": "Rp 650.000",
+      "period": "/ malam",
+      "badge": "Best Mountain View",
+      "capacity": "2 - 3 Orang",
+      "bedType": "1 Super King Bed / Twin Option",
+      "size": "42 m²",
+      "view": "Bukit Pergasingan & Pine Forest",
+      "image": "/images/room-rinjani-deluxe.jpg",
+      "gallery": [
+        "/images/room-rinjani-deluxe.jpg",
+        "/images/breakfast-view.jpg",
+        "/images/night-bonfire.jpg"
+      ],
+      "description": "Kamar deluxe bernuansa kayu jati alami dengan teras santai berhiaskan bunga warna-warni. Tempat sempurna untuk menikmati sejuknya kopi Sembalun sembari menatap matahari terbit dari balik perbukitan.",
+      "amenities": [
+        "Teras Pribadi dengan View Bukit",
+        "Water Heater 24 Jam",
+        "High-Speed Wi-Fi",
+        "Free Sarapan Khas Sembalun 2 Pax",
+        "Coffee & Tea Maker",
+        "Air Mineral & Welcome Drink",
+        "Private Bathroom & Hot Shower"
+      ],
+      "featured": true,
+      "active": true,
+      "order": 2
+    },
+    {
+      "id": "room-3",
+      "name": "Cozy Strawberry Wooden Cottage",
+      "slug": "cozy-strawberry-wooden-cottage",
+      "price": 500000,
+      "priceFormatted": "Rp 500.000",
+      "period": "/ malam",
+      "badge": "Family Friendly",
+      "capacity": "2 - 4 Orang",
+      "bedType": "1 Queen Bed + 1 Single Bed",
+      "size": "38 m²",
+      "view": "Strawberry Farm & Garden View",
+      "image": "/images/hero-villa.jpg",
+      "gallery": [
+        "/images/hero-villa.jpg",
+        "/images/strawberry-garden.jpg",
+        "/images/room-rinjani-deluxe.jpg"
+      ],
+      "description": "Cottage kayu tradisional modern yang terletak tepat di tepi kebun strawberry. Suasana tenang dengan aroma kayu alami, sangat cocok bagi pasangan maupun keluarga kecil yang ingin rehat dari hiruk pikuk perkotaan.",
+      "amenities": [
+        "Akses Langsung Kebun Strawberry",
+        "Water Heater 24 Jam",
+        "High-Speed Wi-Fi",
+        "Free Sarapan Hangat 2 Pax",
+        "Meja Kerja & Balkon Santai",
+        "Kamar Mandi Bersih Modern"
+      ],
+      "featured": false,
+      "active": true,
+      "order": 3
+    }
+  ],
+  "facilities": [
+    {
+      "id": "fac-1",
+      "name": "Water Heater 24 Jam",
+      "icon": "fa-shower",
+      "category": "Kenyamanan",
+      "description": "Sembalun terkenal sangat dingin (hingga 14°C). Nikmati mandi air hangat bertekanan stabil kapan saja.",
+      "active": true,
+      "order": 1
+    },
+    {
+      "id": "fac-2",
+      "name": "Wi-Fi Cepat Pegunungan",
+      "icon": "fa-wifi",
+      "category": "Konektivitas",
+      "description": "Koneksi internet stabil berkecepatan tinggi di seluruh area kamar, ruang komunal, dan teras.",
+      "active": true,
+      "order": 2
+    },
+    {
+      "id": "fac-3",
+      "name": "Kebun Strawberry Organik",
+      "icon": "fa-seedling",
+      "category": "Rekreasi",
+      "description": "Tamu bebas memetik dan mencicipi buah strawberry segar langsung dari kebun homestay.",
+      "active": true,
+      "order": 3
+    },
+    {
+      "id": "fac-4",
+      "name": "Area Api Unggun & BBQ Night",
+      "icon": "fa-fire",
+      "category": "Aktivitas",
+      "description": "Tersedia stone fire pit dan peralatan BBQ lengkap untuk menghangatkan malam di bawah taburan bintang.",
+      "active": true,
+      "order": 4
+    },
+    {
+      "id": "fac-5",
+      "name": "Sarapan Hangat & Kopi Lombok",
+      "icon": "fa-mug-hot",
+      "category": "Kuliner",
+      "description": "Sajian sarapan lezat setiap pagi dipadukan kopi khas pegunungan Sembalun yang nikmat.",
+      "active": true,
+      "order": 5
+    },
+    {
+      "id": "fac-6",
+      "name": "Parkir Luas & Aman",
+      "icon": "fa-square-parking",
+      "category": "Fasilitas",
+      "description": "Area parkir luas untuk mobil pribadi maupun bus travel, aman dengan pengawasan 24 jam.",
+      "active": true,
+      "order": 6
+    },
+    {
+      "id": "fac-7",
+      "name": "Paket Trekking Rinjani & Tour",
+      "icon": "fa-mountain",
+      "category": "Petualangan",
+      "description": "Fasilitasi guide resmi dan porter terpercaya untuk pendakian Gunung Rinjani & Bukit Pergasingan.",
+      "active": true,
+      "order": 7
+    },
+    {
+      "id": "fac-8",
+      "name": "Dapur Bersama Lengkap",
+      "icon": "fa-kitchen-set",
+      "category": "Fasilitas",
+      "description": "Tersedia dapur bersama dengan kompor, kulkas, microwave, dispenser, dan alat masak lengkap.",
+      "active": true,
+      "order": 8
+    }
+  ],
+  "gallery": [
+    {
+      "id": "gal-1",
+      "title": "Bale Keluarga Panorama Villa & Rinjani",
+      "category": "pemandangan",
+      "categoryLabel": "Pemandangan & Alam",
+      "imageUrl": "/images/hero-villa.jpg",
+      "publicId": "bale_keluarga_hero_exterior",
+      "alt": "Exterior Bale Keluarga Homestay Sembalun berlatar Gunung Rinjani",
+      "order": 1
+    },
+    {
+      "id": "gal-2",
+      "title": "Grand Family Suite Bedroom",
+      "category": "kamar",
+      "categoryLabel": "Kamar & Suite",
+      "imageUrl": "/images/room-family-suite.jpg",
+      "publicId": "bale_keluarga_family_suite",
+      "alt": "Interior Grand Family Suite Bale Keluarga Sembalun",
+      "order": 2
+    },
+    {
+      "id": "gal-3",
+      "title": "Malam Api Unggun di Bawah Bintang Sembalun",
+      "category": "suasana",
+      "categoryLabel": "Suasana Malam",
+      "imageUrl": "/images/night-bonfire.jpg",
+      "publicId": "bale_keluarga_night_bonfire",
+      "alt": "Suasana api unggun malam di Bale Keluarga Homestay Sembalun",
+      "order": 3
+    },
+    {
+      "id": "gal-4",
+      "title": "Sarapan Pagi di Balkon Menatap Lembah",
+      "category": "fasilitas",
+      "categoryLabel": "Fasilitas & Kuliner",
+      "imageUrl": "/images/breakfast-view.jpg",
+      "publicId": "bale_keluarga_breakfast_view",
+      "alt": "Sarapan segar di balkon kayu Bale Keluarga Sembalun",
+      "order": 4
+    },
+    {
+      "id": "gal-5",
+      "title": "Pergasingan Sunrise Deluxe Room",
+      "category": "kamar",
+      "categoryLabel": "Kamar & Suite",
+      "imageUrl": "/images/room-rinjani-deluxe.jpg",
+      "publicId": "bale_keluarga_deluxe_room",
+      "alt": "Deluxe room dengan teras pribadi bunga Sembalun",
+      "order": 5
+    },
+    {
+      "id": "gal-6",
+      "title": "Petik Strawberry Segar di Kebun Homestay",
+      "category": "pemandangan",
+      "categoryLabel": "Pemandangan & Alam",
+      "imageUrl": "/images/strawberry-garden.jpg",
+      "publicId": "bale_keluarga_strawberry_harvest",
+      "alt": "Panen buah strawberry segar di kebun Bale Keluarga",
+      "order": 6
+    }
+  ],
+  "experiences": [
+    {
+      "id": "exp-1",
+      "title": "Sunrise di Bukit Pergasingan",
+      "distance": "5 Menit dari Homestay",
+      "description": "Menyaksikan matahari terbit spektakuler dengan latar kotak-kotak sawah warna-warni Sembalun yang legendaris.",
+      "image": "/images/hero-villa.jpg"
+    },
+    {
+      "id": "exp-2",
+      "title": "Wisata Petik Strawberry Alami",
+      "distance": "Di Lokasi Homestay",
+      "description": "Aktivitas favorit keluarga memetik langsung buah strawberry manis segar di perkebunan alami sejuk.",
+      "image": "/images/strawberry-garden.jpg"
+    },
+    {
+      "id": "exp-3",
+      "title": "Malam Api Unggun & Stargazing",
+      "distance": "Halaman Villa",
+      "description": "Hangatkan malam dingin pegunungan dengan jagung bakar, teh hangat, dan indahnya galaksi Bima Sakti.",
+      "image": "/images/night-bonfire.jpg"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "testi-1",
+      "name": "Bambang Prasetyo & Keluarga",
+      "origin": "Jakarta Selatan",
+      "rating": 5,
+      "date": "Oktober 2026",
+      "review": "Bale Keluarga Homestay benar-benar tempat liburan impian! Pagi-pagi buka pintu kamar langsung dihadiahi pemandangan puncak Rinjani yang bersih tanpa halangan. Anak-anak bahagia sekali bisa petik strawberry gratis. Water heaternya mantap sekali, udara dingin Sembalun jadi tidak masalah!",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80"
+    },
+    {
+      "id": "testi-2",
+      "name": "dr. Sarah Amanda",
+      "origin": "Surabaya",
+      "rating": 5,
+      "date": "September 2026",
+      "review": "Sangat bersih, pelayanan tuan rumah luar biasa ramah layaknya keluarga sendiri. Api unggun di malam hari suasananya magical banget di bawah taburan bintang. Sarapan kopinya nikmat. Pasti akan balik lagi kalau ke Lombok!",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80"
+    },
+    {
+      "id": "testi-3",
+      "name": "David & Emma Miller",
+      "origin": "Melbourne, Australia",
+      "rating": 5,
+      "date": "Agustus 2026",
+      "review": "The most authentic and breathtaking mountain homestay in Sembalun. The timber aesthetic is gorgeous and the hosts helped us arrange an unforgettable Rinjani summit trek. Highly recommended!",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80"
+    }
+  ],
+  "navigation": [
+    {
+      "id": "nav-1",
+      "label": "Beranda",
+      "link": "#home",
+      "order": 1,
+      "active": true
+    },
+    {
+      "id": "nav-2",
+      "label": "Tentang",
+      "link": "#about",
+      "order": 2,
+      "active": true
+    },
+    {
+      "id": "nav-3",
+      "label": "Kamar & Villa",
+      "link": "#rooms",
+      "order": 3,
+      "active": true
+    },
+    {
+      "id": "nav-4",
+      "label": "Fasilitas",
+      "link": "#facilities",
+      "order": 4,
+      "active": true
+    },
+    {
+      "id": "nav-5",
+      "label": "Galeri",
+      "link": "#gallery",
+      "order": 5,
+      "active": true
+    },
+    {
+      "id": "nav-6",
+      "label": "Lokasi",
+      "link": "#location",
+      "order": 6,
+      "active": true
+    },
+    {
+      "id": "nav-7",
+      "label": "Kontak",
+      "link": "#contact",
+      "order": 7,
+      "active": true
+    }
+  ],
+  "seo": {
+    "title": "Bale Keluarga Homestay Sembalun | Villa Mewah Pegunungan di Kaki Gunung Rinjani",
+    "description": "Bale Keluarga Homestay Sembalun menawarkan penginapan villa pegunungan mewah dan hangat di Sembalun Lombok dengan pemandangan langsung Gunung Rinjani, kebun strawberry, water heater, dan fasilitas keluarga lengkap.",
+    "keywords": "Bale Keluarga Homestay Sembalun, homestay sembalun, villa sembalun lombok, penginapan sembalun rinjani, hotel bukit pergasingan, villa keluarga lombok timur",
+    "ogImage": "/images/hero-villa.jpg",
+    "canonicalUrl": "https://balekeluargasembalun.com"
+  },
+  "integrations": {
+    "googleSheets": {
+      "enabled": false,
+      "scriptUrl": "",
+      "sheetId": "",
+      "lastSync": null,
+      "status": "ready_for_setup"
+    },
+    "cloudinary": {
+      "cloudName": "",
+      "uploadPreset": "",
+      "apiKey": "",
+      "apiSecret": ""
+    }
+  },
+  "bookings": [
+    {
+      "id": "BK-994219",
+      "guestName": "Hendrawan Pratama",
+      "phone": "+6281987654321",
+      "email": "hendrawan@example.com",
+      "roomName": "Grand Rinjani Family Suite",
+      "checkIn": "2026-11-20",
+      "checkOut": "2026-11-23",
+      "guests": "4 Dewasa (Family)",
+      "notes": "Mohon info pemandu trekking ke Bukit Pergasingan",
+      "status": "new",
+      "createdAt": "2026-10-25T08:46:34.219Z"
+    },
+    {
+      "id": "BK-BOOK-001",
+      "guestName": "Ahmad Fauzi",
+      "phone": "+62 813-9876-5432",
+      "email": "ahmad.fauzi@gmail.com",
+      "roomName": "Grand Rinjani Family Suite",
+      "checkIn": "2026-11-10",
+      "checkOut": "2026-11-12",
+      "guests": "4 Dewasa, 2 Anak",
+      "notes": "Minta extra selimut dan info paket trekking Bukit Pergasingan",
+      "status": "confirmed",
+      "createdAt": "2026-10-24T10:15:00Z"
+    }
+  ]
+}
