@@ -321,6 +321,66 @@ body {
   color: #FFFFFF;
 }
 
+/* Landing Page Quick Access Buttons */
+.btn-nav-view-site {
+  text-decoration: none;
+  background: rgba(245, 158, 11, 0.12);
+  color: #FBBF24;
+  border: 1px dashed rgba(245, 158, 11, 0.45);
+}
+
+.btn-nav-view-site:hover {
+  background: #F59E0B;
+  color: #0F172A;
+  border-color: #F59E0B;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+.btn-sidebar-view-site {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.65rem 0.85rem;
+  background: linear-gradient(135deg, rgba(155, 50, 142, 0.3) 0%, rgba(245, 158, 11, 0.3) 100%);
+  color: #FFFFFF;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.btn-sidebar-view-site:hover {
+  background: linear-gradient(135deg, #9B328E 0%, #F59E0B 100%);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+}
+
+.btn-admin-view-site {
+  background: #FFFFFF;
+  color: var(--admin-dark);
+  border: 1px solid var(--admin-border);
+  padding: 0.6rem 1.15rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.88rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-admin-view-site:hover {
+  background: #F8FAFC;
+  border-color: var(--admin-primary);
+  color: var(--admin-primary);
+  transform: translateY(-1px);
+}
+
 /* ==========================================================================
    MAIN CONTENT AREA
    ========================================================================== */

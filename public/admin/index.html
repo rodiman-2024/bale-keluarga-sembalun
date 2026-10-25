@@ -128,9 +128,20 @@
             <span>Sheets & Cloudinary</span>
           </button>
         </li>
+        <li style="margin-top: 0.6rem; padding-top: 0.6rem; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+          <a href="/" target="_blank" class="nav-item-btn btn-nav-view-site" title="Buka Landing Page di Tab Baru">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <span>Lihat Landing Page</span>
+          </a>
+        </li>
       </ul>
 
       <div class="sidebar-footer">
+        <a href="/" target="_blank" class="btn-sidebar-view-site" id="btn-view-landingpage" title="Buka Landing Page di Tab Baru">
+          <i class="fa-solid fa-globe"></i>
+          <span>Lihat Landing Page</span>
+          <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.75rem; margin-left: auto;"></i>
+        </a>
         <button class="btn-sidebar-logout" id="btn-admin-logout">
           <i class="fa-solid fa-power-off"></i>
           <span>Keluar (Logout)</span>
@@ -151,6 +162,10 @@
         </div>
 
         <div class="topbar-right">
+          <a href="/" target="_blank" class="btn-admin btn-admin-view-site" id="topbar-btn-view-site" title="Buka Landing Page di Tab Baru">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <span>Lihat Landing Page</span>
+          </a>
           <button class="btn-admin btn-admin-primary" id="btn-save-all">
             <i class="fa-solid fa-floppy-disk"></i> Simpan Semua Perubahan
           </button>
@@ -164,6 +179,20 @@
              TAB 1: OVERVIEW DASHBOARD
              ================================================================ -->
         <section class="tab-pane active" id="tab-overview">
+          <!-- View Landing Page Banner -->
+          <div class="admin-card" style="margin-bottom: 1.5rem; background: linear-gradient(135deg, rgba(155, 50, 142, 0.08) 0%, rgba(245, 158, 11, 0.08) 100%); border: 1px solid rgba(155, 50, 142, 0.2); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--admin-dark); margin-bottom: 0.25rem;">
+                <i class="fa-solid fa-globe" style="color: var(--admin-primary); margin-right: 0.4rem;"></i> Pratinjau Website Publik
+              </h3>
+              <p style="color: var(--admin-muted); font-size: 0.9rem; margin-bottom: 0;">
+                Buka website landing page publik Bale Keluarga Homestay Sembalun untuk melihat tampilan langsung yang dilihat oleh pengunjung dan calon tamu.
+              </p>
+            </div>
+            <a href="/" target="_blank" class="btn-admin btn-admin-primary" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; white-space: nowrap;">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Buka Landing Page (Tab Baru)
+            </a>
+          </div>
           <div class="form-grid-3" style="margin-bottom: 2rem;">
             <div class="admin-card" style="border-left: 4px solid var(--admin-primary);">
               <div class="card-subtitle" style="margin-bottom: 0.5rem;">Total Kamar Aktif</div>
