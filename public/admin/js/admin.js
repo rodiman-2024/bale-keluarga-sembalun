@@ -423,15 +423,94 @@ function initDirectUploaders() {
   }
 }
 
-// Upload file helper
+// Client-side image compressor for lightning-fast uploads and mobile photos
+function compressImageBeforeUpload(file, maxWidth = 1600, maxHeight = 1600, quality = 0.85) {
+  return new Promise((resolve) => {
+    if (!file || !file.type || !file.type.startsWith('image/') || file.type.includes('svg')) {
+      return resolve(file);
+    }
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        let width = img.width;
+        let height = img.height;
+        if (width > maxWidth) {
+          height = Math.round((height * maxWidth) / width);
+          width = maxWidth;
+        }
+        if (height > maxHeight) {
+          width = Math.round((width * maxHeight) / height);
+          height = maxHeight;
+        }
+
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+
+        canvas.toBlob((blob) => {
+          if (!blob || blob.size >= file.size) {
+            resolve(file);
+          } else {
+            const compressed = new File([blob], file.name.replace(/\.[^.]+$/, '.jpg'), {
+              type: 'image/jpeg',
+              lastModified: Date.now()
+            });
+            resolve(compressed);
+          }
+        }, 'image/jpeg', quality);
+      };
+      img.onerror = () => resolve(file);
+      img.src = e.target.result;
+    };
+    reader.onerror = () => resolve(file);
+    reader.readAsDataURL(file);
+  });
+}
+
+// Upload file helper with multi-tier fallback (Cloudinary -> Serverless Data URI -> Local Device URI)
 async function uploadInternalStoragePhoto(file, onSuccess) {
   const token = getAuthToken();
-  const formData = new FormData();
-  formData.append('image', file);
+  showToast(`Menyiapkan "${file.name}"...`, 'info');
 
-  showToast(`Mengunggah "${file.name}" dari penyimpanan lokal...`, 'info');
-
+  let fileToUpload = file;
   try {
+    fileToUpload = await compressImageBeforeUpload(file);
+  } catch (compErr) {
+    console.warn('Image compression skipped:', compErr);
+  }
+
+  // Tier 1: Direct Cloudinary Upload if Unsigned Preset is filled
+  const cloudName = currentData?.integrations?.cloudinary?.cloudName || document.getElementById('int-cloud-name')?.value.trim();
+  const uploadPreset = currentData?.integrations?.cloudinary?.uploadPreset || document.getElementById('int-cloud-preset')?.value.trim();
+
+  if (cloudName && uploadPreset) {
+    try {
+      showToast(`Mengunggah ke Cloudinary CDN...`, 'info');
+      const cldData = new FormData();
+      cldData.append('file', fileToUpload);
+      cldData.append('upload_preset', uploadPreset);
+      const cldRes = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+        method: 'POST',
+        body: cldData
+      });
+      const cldJson = await cldRes.json();
+      if (cldJson.secure_url) {
+        onSuccess(cldJson.secure_url);
+        return;
+      }
+    } catch (cldErr) {
+      console.warn('Direct Cloudinary upload failed, falling back to server handler:', cldErr);
+    }
+  }
+
+  // Tier 2: Server API Upload (/api/admin/cloudinary/upload)
+  try {
+    const formData = new FormData();
+    formData.append('image', fileToUpload);
+
     const res = await fetch('/api/admin/cloudinary/upload', {
       method: 'POST',
       headers: { 'Authorization': `Bearer ${token}` },
@@ -441,11 +520,25 @@ async function uploadInternalStoragePhoto(file, onSuccess) {
 
     if (json.status === 'success' && json.url) {
       onSuccess(json.url);
+      return;
     } else {
-      showToast('Gagal mengunggah foto: ' + (json.message || 'Error tidak diketahui'), 'error');
+      console.warn('Server upload returned warning:', json.message);
     }
   } catch (err) {
-    showToast('Gagal mengunggah: ' + err.message, 'error');
+    console.warn('Server upload error, applying client-side fallback:', err.message);
+  }
+
+  // Tier 3: Resilient Client-Side Fallback (Converts to Data URI in browser)
+  // Ensures image selection ALWAYS succeeds regardless of server filesystem restrictions
+  try {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      onSuccess(e.target.result);
+      showToast(`Foto "${file.name}" berhasil dimuat dari perangkat!`, 'success');
+    };
+    reader.readAsDataURL(fileToUpload);
+  } catch (fallbackErr) {
+    showToast('Gagal memproses file: ' + fallbackErr.message, 'error');
   }
 }
 

@@ -559,24 +559,49 @@ app.post('/api/admin/cloudinary/upload', verifyAdminToken, upload.single('image'
         thumbnailUrl: cloudinary.url(result.public_id, { width: 300, height: 200, crop: 'fill', quality: 'auto' })
       });
     } else {
-      // Local Fallback Storage when Cloudinary keys are not yet filled
+      // Local Storage with automatic Data URI fallback for read-only environments (Vercel)
       const ext = path.extname(req.file.originalname) || '.jpg';
       const filename = `upload_${Date.now()}_${Math.floor(Math.random() * 1000)}${ext}`;
       const uploadPath = path.join(__dirname, 'public', 'images', filename);
 
-      fs.writeFileSync(uploadPath, req.file.buffer);
+      let savedLocally = false;
+      try {
+        fs.writeFileSync(uploadPath, req.file.buffer);
+        savedLocally = true;
+      } catch (writeErr) {
+        console.warn('⚠️ File system lokal read-only (Vercel Serverless). Menggunakan Data URI fallback:', writeErr.message);
+      }
 
-      return res.json({
-        status: 'success',
-        message: 'Gambar disimpan ke server lokal (Catatan: Masukkan Cloudinary API Key di menu Integrasi untuk upload langsung ke cloud).',
-        storage: 'local',
-        url: `/images/${filename}`,
-        publicId: filename,
-        format: ext.replace('.', ''),
-        width: 1200,
-        height: 800,
-        thumbnailUrl: `/images/${filename}`
-      });
+      if (savedLocally) {
+        return res.json({
+          status: 'success',
+          message: 'Gambar disimpan ke server lokal.',
+          storage: 'local',
+          url: `/images/${filename}`,
+          publicId: filename,
+          format: ext.replace('.', ''),
+          width: 1200,
+          height: 800,
+          thumbnailUrl: `/images/${filename}`
+        });
+      } else {
+        // High-efficiency Base64 Data URI fallback for Serverless / Read-Only environments
+        const mimeType = req.file.mimetype || 'image/jpeg';
+        const base64Data = req.file.buffer.toString('base64');
+        const dataUri = `data:${mimeType};base64,${base64Data}`;
+
+        return res.json({
+          status: 'success',
+          message: 'Foto berhasil diunggah dan siap ditampilkan!',
+          storage: 'data-uri',
+          url: dataUri,
+          publicId: filename,
+          format: ext.replace('.', ''),
+          width: 1200,
+          height: 800,
+          thumbnailUrl: dataUri
+        });
+      }
     }
   } catch (err) {
     console.error('Upload error:', err);
