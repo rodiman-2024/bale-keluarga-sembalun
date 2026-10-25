@@ -16,3 +16,5 @@ Thumbs.db
 # Temporary Test Scripts
 test_integration.js
 test_admin_fixes.js
+
+.vercel
